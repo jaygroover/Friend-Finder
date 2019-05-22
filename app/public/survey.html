@@ -1,18 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Friend Finder</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Friend Finder</title>
+        <!-- Latest Compiled CSS and JS-->
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+        
+        <!-- Font Awesome Glyphicons-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 </head>
 
 
 
 <body>
+    <style>
+    body{
+       background-image:url(https://www.wallpaperup.com/uploads/wallpapers/2015/02/10/617607/a5dd090d11bc34cf5441da9e179105d5.jpg);
+       background-size: cover;
+    }
+
+    html{
+        min-height:100%
+    
+    }
+    h3, h4{
+        color: antiquewhite;
+    }
+    </style>
+    
+    
+    
 <div class = "container">
     <h2>Survey Questions</h2>
     <hr>
@@ -158,9 +180,85 @@
 
 </div>
 
+<div id="resultsModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h2 class="modal-title"><strong>Best Match</strong></h2>
+                </div>    
+                <div class="modal-body">
+                    <h2 id="matchName"></h2>
+                    <img id="matchImg" class="img.fluid" width="500" height="auto" src="" alt="" >
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript">
+
+$("#submit").on("click", function (){
+
+    function validateForm(){
+        var isValid = true;
+        $(".form-control").each(function(){
+            if ($(this).val()===""){
+                isValid = false;
+            }
+        });
+       $(".chosen-select").each(function(){
+
+        if ($(this).val()===""){
+                isValid = false;
+            }
+       });
+       return isValid;
+
+    }
+
+       if(validateForm()){
+           var userData = {
+               name: $("#name").val(),
+               photo: $("#photo").val(),
+               scores:[
+                   $("#q1").val(),
+                   $("#q2").val(),
+                   $("#q3").val(),
+                   $("#q4").val(),
+                   $("#q5").val(),
+                   $("#q6").val(),
+                   $("#q7").val(),
+                   $("#q8").val(),
+                   $("#q9").val(),
+                   $("#q10").val(),
+               ]
+           };
+           var currentURL = window.location.origin;
+       
+           $.post(currentURL + "/api/friends", userData, function(data) {
+                    
+                    $("#matchName").text(data.name);
+                    $("#matchImg").attr("src", data.photo);
+                    $("#resultsModal").modal("toggle");                    
+                });
+            }
+            else {
+                alert ("Please fill out all the fields before submitting!")
+            }
+            return false;
+            
+            
+        })
+
+
+</script>
 
 
 
-    
 </body>
 </html>
+
+    
