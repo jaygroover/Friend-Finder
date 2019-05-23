@@ -52,7 +52,7 @@
         <input type="text" name="" id="name" class="form-control" placeholder="Full Name" required>
 
         <h4>Link to Photo Image (Required)</h4>
-        <input type="text" name="" id="photo" class="form-control" placeholder="http://www.img-url.com" required>
+        <input type="text" name="" id="photo" class="form-control" placeholder="Enter your image link here" required>
         
         <hr>
 
@@ -196,8 +196,8 @@
                 </div>   
                  
                 <div class="modal-body">
-                    <h2 id="matchName"></h2>
-                    <img id="matchImg" class="img.fluid" width="500" height="auto" src="" alt="" >
+                    <h2 id="matchName"></h2><h5><strong>Iron Man</strong></h5>
+                    <img id="matchImg" class="img.fluid" width="500" height="auto" src="" alt="Image not available" >
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -245,8 +245,9 @@
                 var currentURL = window.location.origin;
                 
                 $.post(currentURL + "/api/friend", userData, function(data) {
+
                     
-                    $("#matchName").text(data.name);
+                     $("#matchName").text(data.name);
                     $("#matchImg").attr("src", data.photo);
                     $("#resultsModal").modal("toggle");                    
                 });

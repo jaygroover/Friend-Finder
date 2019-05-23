@@ -55,15 +55,15 @@ var friends = [
     name: "Thanos",
     photo: "https://cdn.vox-cdn.com/thumbor/HcrcKEuM1VNk8bvIqfd6o2ZBd0M=/249x0:2371x1048/2120x1413/filters:focal(1073x320:1481x728):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/60323187/Screen_Shot_2018_07_10_at_1.52.58_PM.0.png",
     scores:[
-        "1",
         "5",
-        "3",
         "5",
-        "2",
-        "1",
-        "3",
-        "1",
-        "2",
+        "5",
+        "5",
+        "5",
+        "5",
+        "5",
+        "5",
+        "5",
         "5"
     ]
 
