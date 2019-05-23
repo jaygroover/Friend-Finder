@@ -10,7 +10,7 @@ module.exports = function(app){
         var bestMatch = {
             name:"",
             photo:"",
-            friendDifference: 1000
+            friendDifference: Infinity
         };
 
         console.log(req.body);
