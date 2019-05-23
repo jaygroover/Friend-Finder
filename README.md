@@ -9,7 +9,7 @@
 ![Bamazon](survey.PNG)
 
 
-![Bamazon](final.PNG)
+![Bamazon](finalpick.PNG)
 
 
 
